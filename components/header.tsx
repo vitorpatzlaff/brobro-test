@@ -1,30 +1,17 @@
-import { useState } from 'react'
 import styled from 'styled-components'
 import {
   AppBar,
-  Drawer,
   Toolbar as MuiToolbar,
   Typography
 } from '@mui/material'
-import MenuIcon from '@mui/icons-material/Menu'
+import Filter from './filter'
 
 function Header () {
-  const [sideOpen, setSideOpen] = useState<{ right: boolean }>({ right: false })
-
-  // const toggleDrawer
-
   return (
     <AppBar>
       <Toolbar>
         <Typography variant='h2'>Brooklin Brothers Test</Typography>
-
-        <Button onClick={toggleDrawer('right', true)}><MenuIcon /></Button>
-        <Drawer
-          anchor='right'
-          open={anchor}
-        >
-
-        </Drawer>
+        <Filter />
       </Toolbar>
     </AppBar>
   )
