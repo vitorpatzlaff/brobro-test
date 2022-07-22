@@ -1,10 +1,15 @@
 import type { NextPage } from 'next'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import {
   LinearProgress,
   Container,
-  Grid
+  Grid,
+  Card as MuiCard,
+  Typography,
+  Divider
 } from '@mui/material'
+import styled from 'styled-components'
 
 type ArrayOfObjects = [{}]
 
@@ -42,7 +47,7 @@ const Home: NextPage = () => {
   }, [])
 
   if (nodes) {
-    console.log(nodes)
+    // console.log(nodes)
   }
 
   if (isLoading) {
@@ -53,13 +58,34 @@ const Home: NextPage = () => {
 
   return (
     <Container>
-      <Grid>
+      <GridContainer>
         {nodes && nodes.map((node: NodeProperties, index: number) => (
-          <li>{node.name} - {index}</li>
+          <Grid item key={node.id} xs>
+            <Card>
+              <Image src={node.images![0].asset!.url} alt={node.images![0].alt} width={400} height={400} />
+              <Divider />
+              <Typography>
+                {node.name} - {index}
+              </Typography>
+            </Card>
+          </Grid>
         ))}
-      </Grid>
+      </GridContainer>
     </Container>
   )
 }
+
+const GridContainer = styled(Grid).attrs({
+  container: true,
+  spacing: 8
+})`
+  margin-top: 150px;
+`
+
+const Card = styled(MuiCard)`
+  min-width: 200px;
+  height: 300px;
+  padding: 5px;
+`
 
 export default Home

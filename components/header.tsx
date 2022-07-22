@@ -1,22 +1,30 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 import {
-  IconButton as MuiIconButton,
   AppBar,
+  Drawer,
   Toolbar as MuiToolbar,
   Typography
 } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 
 function Header () {
-  
+  const [sideOpen, setSideOpen] = useState<{ right: boolean }>({ right: false })
+
+  // const toggleDrawer
 
   return (
     <AppBar>
       <Toolbar>
         <Typography variant='h2'>Brooklin Brothers Test</Typography>
-        <IconButton color='inherit'>
-          <MenuIcon />
-        </IconButton>
+
+        <Button onClick={toggleDrawer('right', true)}><MenuIcon /></Button>
+        <Drawer
+          anchor='right'
+          open={anchor}
+        >
+
+        </Drawer>
       </Toolbar>
     </AppBar>
   )
@@ -35,8 +43,6 @@ const Toolbar = styled(MuiToolbar)`
   margin: 0 auto;
   width: 80%;
   height: 85px;
-`
-
-const IconButton = styled(MuiIconButton)`
-
+  display: flex;
+  justify-content: space-between;
 `
