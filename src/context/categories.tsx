@@ -8,7 +8,7 @@ export type ContextProperties = {
   selectedCategory?: string
 }
 
-const CategoriesContext = createContext<ContextProperties | {}>({})
+const CategoriesContext = createContext<any>({})
 
 export function CategoriesProvider ({ children }: any) {
   const [categories, setCategories] = useState<string[]>([])

@@ -27,7 +27,7 @@ export type NodeProperties = {
   }
 }
 
-const Home: NextPage = ({ nodes }: { nodes: ArrayOfObjects }) => {
+const Home: any = ({ nodes }: { nodes: ArrayOfObjects }) => {
   const { updateCategories, selectedCategory } = useCategories()
 
   useEffect(() => {

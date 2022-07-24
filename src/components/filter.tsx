@@ -9,19 +9,13 @@ import {
   ListItemButton,
   ListItemText
 } from '@mui/material'
-import { useCategories, ContextProperties } from '../context/categories'
+import { useCategories } from '../context/categories'
 import MenuIcon from '@mui/icons-material/Menu'
-
-type TextOfEvent = {
-  target: {
-    innerText: string
-  }
-}
 
 function Filter () : JSX.Element {
   const [open, setOpen] = useState<boolean>(false)
   const [isCategorySelected, setIsCategorySelected] = useState<boolean>(false)
-  const { categories, chosenCategory } = useCategories<ContextProperties>()
+  const { categories, chosenCategory } = useCategories()
 
   if (!categories) {
     return <></>     
@@ -39,7 +33,7 @@ function Filter () : JSX.Element {
     setOpen(open)
   }
 
-  function handleSelectedCategory (e: TextOfEvent): void {
+  function handleSelectedCategory (e: any): void {
     setIsCategorySelected(true)
     chosenCategory(e.target.innerText)
   }
