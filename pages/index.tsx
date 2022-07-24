@@ -5,8 +5,8 @@ import {
   Container
 } from '@mui/material'
 import styled from 'styled-components'
-import { useCategories, ContextProperties } from '../src/context/categories'
-import { useCallback, useEffect } from 'react'
+import { useCategories } from '../src/context/categories'
+import { useEffect } from 'react'
 import ProductsList from '../src/components/productsList'
 
 type ArrayOfObjects = [{}]
@@ -32,7 +32,7 @@ const Home: any = ({ nodes }: { nodes: ArrayOfObjects }) => {
 
   useEffect(() => {
     updateCategories(nodes)
-  }, [nodes, updateCategories])
+  }, [nodes])
 
   if (!nodes) {
     return (

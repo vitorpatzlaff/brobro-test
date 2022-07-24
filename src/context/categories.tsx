@@ -1,13 +1,6 @@
 import { createContext, useState, useContext, useCallback } from 'react'
 import type { NodeProperties } from '../../pages'
 
-export type ContextProperties = {
-  updateCategories?: void,
-  categories?: string[],
-  chosenCategory?: void,
-  selectedCategory?: string
-}
-
 const CategoriesContext = createContext<any>({})
 
 export function CategoriesProvider ({ children }: any) {
