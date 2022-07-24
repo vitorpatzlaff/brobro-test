@@ -1,4 +1,5 @@
-import type { NextPage, GetServerSideProps } from 'next'
+import type { GetServerSideProps } from 'next'
+import Head from 'next/head'
 import {
   LinearProgress as MuiLinearProgress,
   Box as MuiBox,
@@ -41,6 +42,11 @@ const Home: any = ({ nodes }: { nodes: ArrayOfObjects }) => {
   }
   return (
     <>
+      <Head>
+        <title>
+          {selectedCategory || 'Todos los productos'}
+        </title>
+      </Head>
       <Container>
         <Box>
           {nodes.map((node: NodeProperties) => {
