@@ -40,29 +40,30 @@ const Home: any = ({ nodes }: { nodes: ArrayOfObjects }) => {
     )
   }
   return (
-    <Container>
-      <Box>
-        {nodes.map((node: NodeProperties) => {
-          if (node.category!.name === selectedCategory || !selectedCategory) {
-            return (
-              <ProductsList
-                key={node.id!}
-                url={node.images![0].asset!.url!}
-                alt={node.images![0].alt!}
-                name={node.name!}
-                shortDescription={node.shortDescription!}
-              />
-            )
-          }
-        })}
-      </Box>
-    </Container>
+    <>
+      <Container>
+        <Box>
+          {nodes.map((node: NodeProperties) => {
+            if (node.category!.name === selectedCategory || !selectedCategory) {
+              return (
+                <ProductsList
+                  key={node.id!}
+                  url={node.images![0].asset!.url!}
+                  alt={node.images![0].alt!}
+                  name={node.name!}
+                  shortDescription={node.shortDescription!}
+                />
+              )
+            }
+          })}
+        </Box>
+      </Container>
+    </>
   )
 }
 
-const Box = styled(MuiBox).attrs({
-
-})`
+const Box = styled(MuiBox)`
+  margin: -100px;
   margin-top: 150px;
   display: flex;
   flex-wrap: wrap;

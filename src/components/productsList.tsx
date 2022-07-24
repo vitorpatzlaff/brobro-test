@@ -23,7 +23,7 @@ function ProductsList ({ url, alt, name, shortDescription }: PropTypes): JSX.Ele
         onClick={() => setCardClicked(!cardClicked)}
       >
         {cardClicked ? (
-          <Typography style={{ bottom: 0 }}>
+          <Typography>
             {shortDescription}
           </Typography>
         ) : (
@@ -48,8 +48,8 @@ function ProductsList ({ url, alt, name, shortDescription }: PropTypes): JSX.Ele
 }
 
 const Card = styled(MuiCard)`
-  width: 220px;
-  height: 290px;
+  width: 300px;
+  height: 350px;
   padding: 5px;
   text-align: center;
   cursor: pointer;
