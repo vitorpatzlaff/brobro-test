@@ -1,15 +1,15 @@
 // import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Layout from '../src/components/layout'
-import { DataProvider } from '../src/context/data'
+import { CategoriesProvider } from '../src/context/categories'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <DataProvider>
+    <CategoriesProvider>
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </DataProvider>
+    </CategoriesProvider>
   ) 
 }
 

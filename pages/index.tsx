@@ -1,15 +1,11 @@
 import type { NextPage, GetServerSideProps } from 'next'
-import Image from 'next/image'
 import {
   LinearProgress as MuiLinearProgress,
-  Container,
-  Grid,
-  Card as MuiCard,
-  Typography,
-  Divider
+  Box as MuiBox,
+  Container
 } from '@mui/material'
 import styled from 'styled-components'
-import { useData } from '../src/context/data'
+import { useCategories, ContextProperties } from '../src/context/categories'
 import { useCallback, useEffect } from 'react'
 import ProductsList from '../src/components/productsList'
 
@@ -32,28 +28,11 @@ export type NodeProperties = {
 }
 
 const Home: NextPage = ({ nodes }: { nodes: ArrayOfObjects }) => {
-  // const [nodes, setNodes] = useState<ArrayOfObjects | null>()
-  // const [isLoading, setIsLoading] = useState<boolean>(false)
-
-  // useEffect(() => {
-  //   setIsLoading(true)
-  //   fetch('/productsCategory.json')
-  //     .then((response) => {
-  //       return response.json()
-  //     })
-  //     .then((data) => {
-  //       const nodes: ArrayOfObjects = data.data.nodes
-  //       setNodes(nodes)
-  //       setIsLoading(false)
-  //     })
-  // }, [])
-
-  const { updateCategories, selectedCategory } = useData()
-  console.log('categoria selecionada:', selectedCategory)
+  const { updateCategories, selectedCategory } = useCategories()
 
   useEffect(() => {
     updateCategories(nodes)
-  }, [nodes])
+  }, [nodes, updateCategories])
 
   if (!nodes) {
     return (
@@ -62,44 +41,32 @@ const Home: NextPage = ({ nodes }: { nodes: ArrayOfObjects }) => {
   }
   return (
     <Container>
-      <GridContainer>
+      <Box>
         {nodes.map((node: NodeProperties) => {
-          if (node.category!.name === selectedCategory) {
+          if (node.category!.name === selectedCategory || !selectedCategory) {
             return (
               <ProductsList
                 key={node.id!}
                 url={node.images![0].asset!.url!}
                 alt={node.images![0].alt!}
                 name={node.name!}
-              />
-            )
-          } else if (!selectedCategory) {
-            return (
-              <ProductsList
-                key={node.id!}
-                url={node.images![0].asset!.url!}
-                alt={node.images![0].alt!}
-                name={node.name!}
+                shortDescription={node.shortDescription!}
               />
             )
           }
         })}
-      </GridContainer>
+      </Box>
     </Container>
   )
 }
 
-const GridContainer = styled(Grid).attrs({
-  container: true,
-  spacing: 8
+const Box = styled(MuiBox).attrs({
+
 })`
   margin-top: 150px;
-`
-
-const Card = styled(MuiCard)`
-  min-width: 200px;
-  height: 300px;
-  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `
 
 const LinearProgress = styled(MuiLinearProgress)`

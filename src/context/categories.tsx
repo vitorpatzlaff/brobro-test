@@ -1,9 +1,16 @@
 import { createContext, useState, useContext, useCallback } from 'react'
 import type { NodeProperties } from '../../pages'
 
-const DataContext = createContext(null)
+export type ContextProperties = {
+  updateCategories?: void,
+  categories?: string[],
+  chosenCategory?: void,
+  selectedCategory?: string
+}
 
-export function DataProvider ({ children }: any) {
+const CategoriesContext = createContext<ContextProperties | {}>({})
+
+export function CategoriesProvider ({ children }: any) {
   const [categories, setCategories] = useState<string[]>([])
   const [selectedCategory, setSelectedCategory] = useState<string | null>()
 
@@ -14,13 +21,12 @@ export function DataProvider ({ children }: any) {
   }
   
   function chosenCategory (category: string) {
-    console.log('categorias', categories)
     setSelectedCategory(category)
   }
   
 
   return (
-    <DataContext.Provider value={{
+    <CategoriesContext.Provider value={{
       updateCategories,
       categories,
       chosenCategory,
@@ -28,10 +34,10 @@ export function DataProvider ({ children }: any) {
     }}
     >
       {children}
-    </DataContext.Provider>
+    </CategoriesContext.Provider>
   )
 }
 
-export function useData () {
-  return useContext(DataContext)
+export function useCategories () {
+  return useContext(CategoriesContext)
 }

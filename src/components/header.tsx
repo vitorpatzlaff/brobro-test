@@ -19,13 +19,6 @@ function Header () {
 
 export default Header
 
-// const Container = styled(MuiContainer)`
-//   width: 100%;
-//   height: 100px;
-//   background-color: #fc0;
-//   text-align: center;
-// `
-
 const Toolbar = styled(MuiToolbar)`
   margin: 0 auto;
   width: 80%;

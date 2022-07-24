@@ -9,8 +9,8 @@ import {
   ListItemButton,
   ListItemText
 } from '@mui/material'
+import { useCategories, ContextProperties } from '../context/categories'
 import MenuIcon from '@mui/icons-material/Menu'
-import { useData } from '../context/data'
 
 type TextOfEvent = {
   target: {
@@ -18,13 +18,13 @@ type TextOfEvent = {
   }
 }
 
-function Filter () {
+function Filter () : JSX.Element {
   const [open, setOpen] = useState<boolean>(false)
   const [isCategorySelected, setIsCategorySelected] = useState<boolean>(false)
-  const { categories, chosenCategory } = useData()
+  const { categories, chosenCategory } = useCategories<ContextProperties>()
 
   if (!categories) {
-    return      
+    return <></>     
   }
 
   const toggleDrawer = (open: boolean) => (event: KeyboardEvent | MouseEvent): undefined => {
