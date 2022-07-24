@@ -8,15 +8,14 @@ import {
 } from '@mui/material'
 
 type PropTypes = {
-  id: string,
   url: string,
   alt: string,
   name: string
 }
 
-function ProductsList ({ id, url, alt, name }: PropTypes): JSX.Element {
+function ProductsList ({ url, alt, name }: PropTypes): JSX.Element {
   return (
-    <Grid item key={id} xs>
+    <Grid item xs>
       <Card>
         <Image src={url} alt={alt} width={400} height={400} priority />
         <Divider />

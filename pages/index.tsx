@@ -60,35 +60,14 @@ const Home: NextPage = ({ nodes }: { nodes: ArrayOfObjects }) => {
       <LinearProgress />
     )
   }
-
-  // setData(nodes)
-
-  // return (
-  //   <Container>
-  //     <GridContainer>
-  //       {nodes.map((node: NodeProperties, index: number) => (
-  //         <Grid item key={node.id} xs>
-  //           <Card>
-  //             <Image src={node.images![0].asset!.url} alt={node.images![0].alt} width={400} height={400} priority />
-  //             <Divider />
-  //             <Typography>
-  //               {node.name} - {index}
-  //             </Typography>
-  //           </Card>
-  //         </Grid>
-  //       ))}
-  //     </GridContainer>
-  //   </Container>
-  // )
-
   return (
     <Container>
       <GridContainer>
         {nodes.map((node: NodeProperties) => {
-          if (node.category.name === selectedCategory) {
+          if (node.category!.name === selectedCategory) {
             return (
               <ProductsList
-                id={node.id!}
+                key={node.id!}
                 url={node.images![0].asset!.url!}
                 alt={node.images![0].alt!}
                 name={node.name!}
@@ -97,7 +76,7 @@ const Home: NextPage = ({ nodes }: { nodes: ArrayOfObjects }) => {
           } else if (!selectedCategory) {
             return (
               <ProductsList
-                id={node.id!}
+                key={node.id!}
                 url={node.images![0].asset!.url!}
                 alt={node.images![0].alt!}
                 name={node.name!}
