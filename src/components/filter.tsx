@@ -20,6 +20,7 @@ type TextOfEvent = {
 
 function Filter () {
   const [open, setOpen] = useState<boolean>(false)
+  const [isCategorySelected, setIsCategorySelected] = useState<boolean>(false)
   const { categories, chosenCategory } = useData()
 
   if (!categories) {
@@ -39,7 +40,13 @@ function Filter () {
   }
 
   function handleSelectedCategory (e: TextOfEvent): void {
+    setIsCategorySelected(true)
     chosenCategory(e.target.innerText)
+  }
+
+  function handleClearCategory (): void {
+    setIsCategorySelected(false)
+    chosenCategory(null)
   }
 
   const FilterList = () => {
@@ -61,6 +68,14 @@ function Filter () {
               </ListItemButton>
             </ListItem>
           ))}
+          {isCategorySelected && (
+            <>
+              <Divider />
+              <ListItemButton onClick={handleClearCategory}>
+                <ListItemText primary='Mostrar todo' />
+              </ListItemButton>
+            </>
+          )}
         </List>
       </Box>
     )

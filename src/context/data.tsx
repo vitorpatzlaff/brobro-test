@@ -4,9 +4,8 @@ import type { NodeProperties } from '../../pages'
 const DataContext = createContext(null)
 
 export function DataProvider ({ children }: any) {
-  // const [data, setData] = useState<{}[]>()
   const [categories, setCategories] = useState<string[]>([])
-  const [selectedCategory, setSelectedCategory] = useState<string>()
+  const [selectedCategory, setSelectedCategory] = useState<string | null>()
 
   function updateCategories (nodes: {}[]) {
     const nonFilteredCategories: string[] = Array.from(nodes.map((node: NodeProperties) => node.category!.name!))

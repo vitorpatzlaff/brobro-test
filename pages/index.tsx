@@ -104,7 +104,6 @@ const Home: NextPage = ({ nodes }: { nodes: ArrayOfObjects }) => {
               />
             )
           }
-
         })}
       </GridContainer>
     </Container>
