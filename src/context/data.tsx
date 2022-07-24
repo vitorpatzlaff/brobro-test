@@ -1,24 +1,31 @@
-import { createContext, useState } from 'react'
+import { createContext, useState, useContext, useCallback } from 'react'
+import type { NodeProperties } from '../../pages'
 
 const DataContext = createContext(null)
 
-function DataProvider ({ children }: any) {
-  const [data, setData] = useState<[]>([])
-  // const [categories, setCategories] = useState<string[]>([])
+export function DataProvider ({ children }: any) {
+  // const [data, setData] = useState<{}[]>()
+  const [categories, setCategories] = useState<string[]>([])
+  const [selectedCategory, setSelectedCategory] = useState<string>()
 
-  if (data) {
-    const nonFilteredCategories: string[] = Array.from(data.map((item) => item.category.name))
+  function updateCategories (nodes: {}[]) {
+    const nonFilteredCategories: string[] = Array.from(nodes.map((node: NodeProperties) => node.category!.name!))
     const filteredCategories: string[] = [...new Set(nonFilteredCategories)]
-    // setCategories(filteredCategories)
+    setCategories(filteredCategories)
   }
-
-  // console.log(categories)
   
+  function chosenCategory (category: string) {
+    console.log('categorias', categories)
+    setSelectedCategory(category)
+  }
+  
+
   return (
     <DataContext.Provider value={{
-      data,
-      setData,
-      // categories
+      updateCategories,
+      categories,
+      chosenCategory,
+      selectedCategory
     }}
     >
       {children}
@@ -26,4 +33,6 @@ function DataProvider ({ children }: any) {
   )
 }
 
-export { DataProvider, DataContext }
+export function useData () {
+  return useContext(DataContext)
+}

@@ -10,9 +10,21 @@ import {
   ListItemText
 } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
+import { useData } from '../context/data'
+
+type TextOfEvent = {
+  target: {
+    innerText: string
+  }
+}
 
 function Filter () {
   const [open, setOpen] = useState<boolean>(false)
+  const { categories, chosenCategory } = useData()
+
+  if (!categories) {
+    return      
+  }
 
   const toggleDrawer = (open: boolean) => (event: KeyboardEvent | MouseEvent): undefined => {
     if (
@@ -26,6 +38,10 @@ function Filter () {
     setOpen(open)
   }
 
+  function handleSelectedCategory (e: TextOfEvent): void {
+    chosenCategory(e.target.innerText)
+  }
+
   const FilterList = () => {
     return (
       <Box
@@ -35,12 +51,12 @@ function Filter () {
       >
         <List>
           <ListItem key='title'>
-            <ListItemText primary='Filter' />
+            <ListItemText primary='Categorías' />
           </ListItem>
           <Divider />
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text) => (
+          {categories.map((text: string) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton>
+              <ListItemButton onClick={handleSelectedCategory}>
                 <ListItemText primary={text} />
               </ListItemButton>
             </ListItem>

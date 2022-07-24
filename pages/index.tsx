@@ -1,7 +1,5 @@
 import type { NextPage, GetServerSideProps } from 'next'
 import Image from 'next/image'
-import { useEffect, useContext } from 'react'
-import { DataContext } from '../src/context/data'
 import {
   LinearProgress as MuiLinearProgress,
   Container,
@@ -11,10 +9,13 @@ import {
   Divider
 } from '@mui/material'
 import styled from 'styled-components'
+import { useData } from '../src/context/data'
+import { useCallback, useEffect } from 'react'
+import ProductsList from '../src/components/productsList'
 
 type ArrayOfObjects = [{}]
 
-type NodeProperties = {
+export type NodeProperties = {
   name?: string,
   shortDescription?: string,
   id?: string,
@@ -30,7 +31,7 @@ type NodeProperties = {
   }
 }
 
-const Home: NextPage = ({ nodes }) => {
+const Home: NextPage = ({ nodes }: { nodes: ArrayOfObjects }) => {
   // const [nodes, setNodes] = useState<ArrayOfObjects | null>()
   // const [isLoading, setIsLoading] = useState<boolean>(false)
 
@@ -46,7 +47,13 @@ const Home: NextPage = ({ nodes }) => {
   //       setIsLoading(false)
   //     })
   // }, [])
-  const { setData } = useContext(DataContext)
+
+  const { updateCategories, selectedCategory } = useData()
+  console.log('categoria selecionada:', selectedCategory)
+
+  useEffect(() => {
+    updateCategories(nodes)
+  }, [nodes])
 
   if (!nodes) {
     return (
@@ -54,22 +61,51 @@ const Home: NextPage = ({ nodes }) => {
     )
   }
 
-  setData(nodes)
+  // setData(nodes)
+
+  // return (
+  //   <Container>
+  //     <GridContainer>
+  //       {nodes.map((node: NodeProperties, index: number) => (
+  //         <Grid item key={node.id} xs>
+  //           <Card>
+  //             <Image src={node.images![0].asset!.url} alt={node.images![0].alt} width={400} height={400} priority />
+  //             <Divider />
+  //             <Typography>
+  //               {node.name} - {index}
+  //             </Typography>
+  //           </Card>
+  //         </Grid>
+  //       ))}
+  //     </GridContainer>
+  //   </Container>
+  // )
 
   return (
     <Container>
       <GridContainer>
-        {nodes && nodes.map((node: NodeProperties, index: number) => (
-          <Grid item key={node.id} xs>
-            <Card>
-              <Image src={node.images![0].asset!.url} alt={node.images![0].alt} width={400} height={400} />
-              <Divider />
-              <Typography>
-                {node.name} - {index}
-              </Typography>
-            </Card>
-          </Grid>
-        ))}
+        {nodes.map((node: NodeProperties) => {
+          if (node.category.name === selectedCategory) {
+            return (
+              <ProductsList
+                id={node.id!}
+                url={node.images![0].asset!.url!}
+                alt={node.images![0].alt!}
+                name={node.name!}
+              />
+            )
+          } else if (!selectedCategory) {
+            return (
+              <ProductsList
+                id={node.id!}
+                url={node.images![0].asset!.url!}
+                alt={node.images![0].alt!}
+                name={node.name!}
+              />
+            )
+          }
+
+        })}
       </GridContainer>
     </Container>
   )
