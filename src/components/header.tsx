@@ -14,7 +14,7 @@ function Header () {
   return (
     <AppBar>
       <Toolbar>
-        <Typography>Rexona Store</Typography>
+        <Typography>Rexona</Typography>
         <Filter />
       </Toolbar>
     </AppBar>
@@ -39,9 +39,9 @@ const Toolbar = styled(MuiToolbar)`
 const Typography = styled(MuiTypography).attrs({
   variant: 'h2'
 })`
-  font-size: 200%;
+  font-size: 150%;
 
   @media screen and (orientation: landscape) {
-    font-size: 300%;
+    font-size: 350%;
   }
 `
