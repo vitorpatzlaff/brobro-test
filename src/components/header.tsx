@@ -1,3 +1,6 @@
+// Este componente é o header da página. Eu fiz ele de uma maneira que pudesse ser expandido, isto é, se o projeto fosse maior, provavelmente não seria necessário muitas 
+// mudanças.
+
 import styled from 'styled-components'
 import {
   AppBar,
@@ -5,15 +8,13 @@ import {
   Typography as MuiTypography
 } from '@mui/material'
 import Filter from './filter'
-import { useCategories } from '../context/categories'
 
 function Header () {
-  const { showElement } = useCategories()
 
   return (
     <AppBar>
       <Toolbar>
-        <Typography display={showElement}>Rexona Store</Typography>
+        <Typography>Rexona Store</Typography>
         <Filter />
       </Toolbar>
     </AppBar>
