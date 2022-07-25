@@ -74,24 +74,28 @@ const Home: any = ({ nodes }: { nodes: ArrayOfObjects }) => {
 }
 
 const Box = styled(MuiBox)`
-  margin-left: 0%;
-  margin-right: 0%;
-  margin-top: 12%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-
-  @media screen and (orientation: portrait) {
+  && {
     margin-left: 0%;
     margin-right: 0%;
-    margin-top: 30%;
+    margin-top: 12%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @media screen and (orientation: portrait) {
+      margin-left: 0%;
+      margin-right: 0%;
+      margin-top: 30%;
+    }
   }
 `
 
 const LinearProgress = styled(MuiLinearProgress)`
-  margin-top: 85px;
-  margin-left: -10px;
-  margin-right: -10px;
+  && {  
+    margin-top: 85px;
+    margin-left: -10px;
+    margin-right: -10px;
+  }
 `
 
 export const getServerSideProps: GetServerSideProps = async () => {

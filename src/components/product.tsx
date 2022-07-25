@@ -56,12 +56,14 @@ function Product ({ url, alt, name, shortDescription }: PropTypes): JSX.Element 
 }
 
 const Card = styled(MuiCard)`
-  width: 300px;
-  height: 350px;
-  padding: 5px;
-  text-align: center;
-  cursor: pointer;
-  margin: 12px;
+  && {
+    width: 300px;
+    height: 346px;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+    margin: 12px;
+  }
 `
 
 export default Product
