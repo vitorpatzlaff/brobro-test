@@ -5,12 +5,15 @@ import {
   Typography as MuiTypography
 } from '@mui/material'
 import Filter from './filter'
+import { useCategories } from '../context/categories'
 
 function Header () {
+  const { showElement } = useCategories()
+
   return (
     <AppBar>
       <Toolbar>
-        <Typography>Rexona Productos</Typography>
+        <Typography display={showElement}>Rexona Store</Typography>
         <Filter />
       </Toolbar>
     </AppBar>

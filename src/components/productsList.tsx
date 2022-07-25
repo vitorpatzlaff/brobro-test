@@ -4,8 +4,10 @@ import styled from 'styled-components'
 import {
   Card as MuiCard,
   Divider,
-  Typography
+  Typography,
+  Skeleton
 } from '@mui/material'
+import { useCategories } from '../context/categories'
 
 type PropTypes = {
   url: string,
@@ -15,26 +17,31 @@ type PropTypes = {
 }
 
 function ProductsList ({ url, alt, name, shortDescription }: PropTypes): JSX.Element {
-  const [cardClicked, setCardClicked] = useState<boolean>(false)
+  const [isCardClicked, isSetCardClicked] = useState<boolean>(false)
+  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false)
+  const { showElement } = useCategories()
 
   return (
       <>
         <Card
-          onClick={() => setCardClicked(!cardClicked)}
+          style={{ display: showElement }}
+          onClick={() => isSetCardClicked(!isCardClicked)}
         >
-          <div style={{ display: cardClicked ? 'initial' : 'none' }}>
+          <div style={{ display: isCardClicked ? 'initial' : 'none' }}>
             <Typography>
               {shortDescription}
             </Typography>
             <Divider />
           </div>
-          <div style={{ display: !cardClicked ? 'initial' : 'none' }}>
+          <div style={{ display: !isCardClicked ? 'initial' : 'none' }}>
+            {!isImageLoaded && <Skeleton variant="rectangular" width={300} height={300} />}
             <Image
               src={url}
               alt={alt}
-              width={400}
-              height={400}
+              width={300}
+              height={300}
               layout='responsive'
+              onLoad={() => setIsImageLoaded(true)}
             />
             <Divider />
             <Typography>

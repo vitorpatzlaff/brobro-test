@@ -1,4 +1,4 @@
-import { useState, KeyboardEvent, MouseEvent } from 'react'
+import { useEffect, useState, KeyboardEvent, MouseEvent } from 'react'
 import {
   Box,
   IconButton,
@@ -15,7 +15,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 function Filter () : JSX.Element {
   const [open, setOpen] = useState<boolean>(false)
   const [isCategorySelected, setIsCategorySelected] = useState<boolean>(false)
-  const { categories, chosenCategory } = useCategories()
+  const { categories, chosenCategory, showElement } = useCategories()
 
   if (!categories) {
     return <></>     
@@ -77,7 +77,7 @@ function Filter () : JSX.Element {
 
   return (
     <>
-      <IconButton onClick={toggleDrawer(true)} color='inherit'><MenuIcon /></IconButton>
+      <IconButton onClick={toggleDrawer(true)} color='inherit' style={{ display: showElement }}><MenuIcon /></IconButton>
       <Drawer
         anchor='right'
         open={open}
