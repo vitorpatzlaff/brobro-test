@@ -1,3 +1,5 @@
+// Esta é a página principal, ou seja, é a página carregada quando a rota está vazia ('/'). Seria como um index.html
+
 import type { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import {
@@ -47,6 +49,7 @@ const Home: any = ({ nodes }: { nodes: ArrayOfObjects }) => {
           {selectedCategory || 'Productos Rexona'}
         </title>
       </Head>
+      {/* Esta tag serve para montar um head, mas precisa ser usada assim por conta do Next.js */}
       <Container>
         <Box>
           {nodes.map((node: NodeProperties) => {
@@ -98,5 +101,10 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: { nodes }
   }
 }
+// Eu poderia ter feito o fetch diretamente na minha context, seria até mais fácil, mas preferi fazer com a função getServerSideProps do Next.js.
+
+// Está função roda apenas no server-side, ela serve para eu pegar props dinamicas, mas, o mais importante, ela permite que essas props dinamicas estejam na pre-renderização da
+// página, o que é melhor para o SEO dela. Usando o React puro, a página é enviada vazia ao browser e então renderizada, já com o Next, isso acontece no servidor, e então, depois
+// que a página é montada, ai sim ela é enviada ao browser, isso chama-se Server-Side-Rendering (SSR).
 
 export default Home
