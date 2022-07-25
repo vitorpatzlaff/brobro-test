@@ -40,6 +40,6 @@ const Typography = styled(MuiTypography).attrs({
   variant: 'h2'
 })`
   @media screen and (orientation: portrait) {
-    font-size: 25px;
+    font-size: 140%;
   }
 `
