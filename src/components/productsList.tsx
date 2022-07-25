@@ -17,40 +17,30 @@ type PropTypes = {
 function ProductsList ({ url, alt, name, shortDescription }: PropTypes): JSX.Element {
   const [cardClicked, setCardClicked] = useState<boolean>(false)
 
-  const ShortDescription = styled.div`
-    display: ${cardClicked ? 'initial' : 'none'};
-  `
-
-  const Product = styled.div`
-    display: ${!cardClicked ? 'initial' : 'none'};
-  `
-
-
   return (
       <>
         <Card
           onClick={() => setCardClicked(!cardClicked)}
         >
-          <ShortDescription>
+          <div style={{ display: cardClicked ? 'initial' : 'none' }}>
             <Typography>
               {shortDescription}
             </Typography>
             <Divider />
-          </ShortDescription>
-          <Product>
+          </div>
+          <div style={{ display: !cardClicked ? 'initial' : 'none' }}>
             <Image
               src={url}
               alt={alt}
               width={400}
               height={400}
-              priority
               layout='responsive'
             />
             <Divider />
             <Typography>
               {name}
             </Typography>
-          </Product>
+          </div>
         </Card>
       </>
     )

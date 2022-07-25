@@ -69,17 +69,17 @@ const Home: any = ({ nodes }: { nodes: ArrayOfObjects }) => {
 }
 
 const Box = styled(MuiBox)`
-  margin-left: -100px;
-  margin-right: -100px;
-  margin-top: 150px;
+  margin-left: 0%;
+  margin-right: 0%;
+  margin-top: 12%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 
   @media screen and (orientation: portrait) {
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-top: 90px;
+    margin-left: 0%;
+    margin-right: 0%;
+    margin-top: 30%;
   }
 `
 
