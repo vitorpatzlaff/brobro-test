@@ -1,3 +1,6 @@
+// Outro arquivo de configuração. Aqui é onde configuro dependencias especificas, como o styled-components. Ele é uma arquivo que não precisa ser usado toda hora, a não ser
+// que seja necessário configurar algo especificamente
+
 import Document, { DocumentContext, DocumentInitialProps } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 

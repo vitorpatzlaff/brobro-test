@@ -10,7 +10,9 @@ import {
 import styled from 'styled-components'
 import { useCategories } from '../src/context/categories'
 import { useEffect } from 'react'
-import ProductsList from '../src/components/productsList'
+import Product from '../src/components/product'
+
+// Estou usando a lib de components 'Material UI'
 
 type ArrayOfObjects = [{}]
 
@@ -55,7 +57,7 @@ const Home: any = ({ nodes }: { nodes: ArrayOfObjects }) => {
           {nodes.map((node: NodeProperties) => {
             if (node.category!.name === selectedCategory || !selectedCategory) {
               return (
-                <ProductsList
+                <Product
                   key={node.id!}
                   url={node.images![0].asset!.url!}
                   alt={node.images![0].alt!}

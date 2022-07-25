@@ -1,4 +1,6 @@
-import { useEffect, useState, KeyboardEvent, MouseEvent } from 'react'
+// Este componentes é o menu da direita, onde há as categorias para filtragem
+
+import { useState, KeyboardEvent, MouseEvent } from 'react'
 import {
   Box,
   IconButton,
@@ -25,7 +27,9 @@ function Filter () : JSX.Element {
     if (
       event.type === 'keydown' &&
       ((event as KeyboardEvent).key === 'Tab' ||
-      (event as KeyboardEvent).key === 'Shift') 
+      (event as KeyboardEvent).key === 'Shift')
+      // Esta verificação achei na documentação do Material UI. Achei interessante, pois, se o usuário quiser navegar pelo 'Tab' e 'Shift', ele consegue, se ele apertar outra
+      // tecla, o Drawer é recolhido.
     ) {
       return
     }

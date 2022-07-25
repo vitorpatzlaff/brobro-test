@@ -1,3 +1,5 @@
+// Como o nome diz, este componente serve para renderizar a lista. Ele é uma daqueles cards, o index.tsx verifica as categorias e renderiza os que batem com isto.
+
 import Image from 'next/image'
 import { useState } from 'react'
 import styled from 'styled-components'
@@ -16,7 +18,7 @@ type PropTypes = {
   shortDescription: string
 }
 
-function ProductsList ({ url, alt, name, shortDescription }: PropTypes): JSX.Element {
+function Product ({ url, alt, name, shortDescription }: PropTypes): JSX.Element {
   const [isCardClicked, isSetCardClicked] = useState<boolean>(false)
   const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false)
   const { showElement } = useCategories()
@@ -62,4 +64,4 @@ const Card = styled(MuiCard)`
   margin: 12px;
 `
 
-export default ProductsList
+export default Product

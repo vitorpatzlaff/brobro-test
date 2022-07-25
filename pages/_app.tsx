@@ -1,3 +1,6 @@
+// Este é um arquivo de configuração. O mais importante é a tag Layout, ele faz com que o meu header sempre exista, mesmo que eu vá para outra página. Imagina se houvesse uma
+// página de checkout, o header continua o mesmo, pode haver uma mudança, mas haverá um header com a mesma logo ou algo assim
+
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Layout from '../src/components/layout'
