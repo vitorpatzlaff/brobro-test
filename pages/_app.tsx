@@ -12,6 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           name='description'
           content='Productos Rexona. Contamos con antitranspirante en aerosol, alcohol en gel, jabón líquido, jabón y más...'
         />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
       </Head>
       <Layout>
         <Component {...pageProps} />
