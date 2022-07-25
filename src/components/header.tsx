@@ -39,9 +39,11 @@ const Toolbar = styled(MuiToolbar)`
 const Typography = styled(MuiTypography).attrs({
   variant: 'h2'
 })`
-  font-size: 350%;
+  && {
+    font-size: 350%;
 
-  @media screen and (orientation: portrait) {
-    font-size: 150%;
+    @media screen and (orientation: portrait) {
+      font-size: 150%;
+    }
   }
 `
