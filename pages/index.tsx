@@ -69,11 +69,18 @@ const Home: any = ({ nodes }: { nodes: ArrayOfObjects }) => {
 }
 
 const Box = styled(MuiBox)`
-  margin: -100px;
+  margin-left: -100px;
+  margin-right: -100px;
   margin-top: 150px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  @media screen and (orientation: portrait) {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 110px;
+  }
 `
 
 const LinearProgress = styled(MuiLinearProgress)`

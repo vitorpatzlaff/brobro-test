@@ -18,33 +18,57 @@ function ProductsList ({ url, alt, name, shortDescription }: PropTypes): JSX.Ele
   const [cardClicked, setCardClicked] = useState<boolean>(false)
 
   return (
-    <>
-      <Card
-        onClick={() => setCardClicked(!cardClicked)}
-      >
-        {cardClicked ? (
+    <Card
+      onClick={() => setCardClicked(!cardClicked)}
+    >
+      {cardClicked ? (
+        <Typography>
+          {shortDescription}
+        </Typography>
+      ) : (
+        <>
+          <Image
+            src={url}
+            alt={alt}
+            width={400}
+            height={400}
+            priority
+            layout='responsive'
+            />
+          <Divider />
           <Typography>
-            {shortDescription}
+            {name}
           </Typography>
-        ) : (
-          <>
-            <Image
-              src={url}
-              alt={alt}
-              width={400}
-              height={400}
-              priority
-              layout='responsive'
-              />
-            <Divider />
-            <Typography>
-              {name}
-            </Typography>
-          </>
-        )}
-      </Card>
-    </>
+        </>
+      )}
+    </Card>
   )
+
+  // return (
+  //   <>
+  //     <Card
+  //       onClick={() => setCardClicked(!cardClicked)}
+  //     >
+  //       <Typography display={cardClicked ? 'initial' : 'none'}>
+  //         {shortDescription}
+  //       </Typography>
+  //       <div style={{ display: !cardClicked ? 'initial' : 'none', transitionDuration: 300 }}>
+  //         <Image
+  //           src={url}
+  //           alt={alt}
+  //           width={400}
+  //           height={400}
+  //           priority
+  //           layout='responsive'
+  //           />
+  //         <Divider />
+  //         <Typography>
+  //           {name}
+  //         </Typography>
+  //       </div>
+  //     </Card>
+  //   </>
+  // )
 }
 
 const Card = styled(MuiCard)`
