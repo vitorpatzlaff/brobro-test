@@ -44,7 +44,7 @@ const Home: any = ({ nodes }: { nodes: ArrayOfObjects }) => {
     <>
       <Head>
         <title>
-          {selectedCategory || 'Todos los productos'}
+          {selectedCategory || 'Productos Rexona'}
         </title>
       </Head>
       <Container>
