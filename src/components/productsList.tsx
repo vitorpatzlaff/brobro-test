@@ -45,7 +45,7 @@ function ProductsList ({ url, alt, name, shortDescription }: PropTypes): JSX.Ele
               height={400}
               priority
               layout='responsive'
-              />
+            />
             <Divider />
             <Typography>
               {name}

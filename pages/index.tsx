@@ -79,7 +79,7 @@ const Box = styled(MuiBox)`
   @media screen and (orientation: portrait) {
     margin-left: 0px;
     margin-right: 0px;
-    margin-top: 110px;
+    margin-top: 90px;
   }
 `
 
