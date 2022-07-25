@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useCallback } from 'react'
+import { createContext, useState, useContext, useEffect } from 'react'
 import type { NodeProperties } from '../../pages'
 
 const CategoriesContext = createContext<any>({})
@@ -6,6 +6,11 @@ const CategoriesContext = createContext<any>({})
 export function CategoriesProvider ({ children }: any) {
   const [categories, setCategories] = useState<string[]>([])
   const [selectedCategory, setSelectedCategory] = useState<string | null>()
+  const [showElement, setShowElement] = useState<string>('none')
+
+  useEffect(() => {
+    setShowElement('initial')
+  }, [showElement])
 
   function updateCategories (nodes: {}[]) {
     const nonFilteredCategories: string[] = Array.from(nodes.map((node: NodeProperties) => node.category!.name!))
@@ -18,12 +23,14 @@ export function CategoriesProvider ({ children }: any) {
   }
   
 
+
   return (
     <CategoriesContext.Provider value={{
       updateCategories,
       categories,
       chosenCategory,
-      selectedCategory
+      selectedCategory,
+      showElement
     }}
     >
       {children}
