@@ -9,7 +9,6 @@ import {
   Typography,
   Skeleton
 } from '@mui/material'
-import { useCategories } from '../context/categories'
 
 type PropTypes = {
   url: string,
@@ -21,12 +20,10 @@ type PropTypes = {
 function Product ({ url, alt, name, shortDescription }: PropTypes): JSX.Element {
   const [isCardClicked, isSetCardClicked] = useState<boolean>(false)
   const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false)
-  const { showElement } = useCategories()
 
   return (
       <>
         <Card
-          style={{ display: showElement }}
           onClick={() => isSetCardClicked(!isCardClicked)}
         >
           <div style={{ display: isCardClicked ? 'initial' : 'none' }}>
@@ -36,7 +33,12 @@ function Product ({ url, alt, name, shortDescription }: PropTypes): JSX.Element 
             <Divider />
           </div>
           <div style={{ display: !isCardClicked ? 'initial' : 'none' }}>
-            {!isImageLoaded && <Skeleton variant="rectangular" width={300} height={300} />}
+            {!isImageLoaded && (
+              <>
+                <Skeleton variant="rectangular" width={300} height={300} />
+                <Skeleton variant="rectangular" width={300} height={41} style={{ marginTop: 5 }} />
+              </>
+            )}
             <Image
               src={url}
               alt={alt}
