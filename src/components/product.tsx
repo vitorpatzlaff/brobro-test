@@ -21,10 +21,17 @@ function Product ({ url, alt, name, shortDescription }: PropTypes): JSX.Element 
   const [isCardClicked, isSetCardClicked] = useState<boolean>(false)
   const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false)
 
+  function handleCardClick () {
+    if (isImageLoaded) {
+      isSetCardClicked(!isCardClicked)
+    }
+  }
+
   return (
       <>
         <Card
-          onClick={() => isSetCardClicked(!isCardClicked)}
+          onClick={handleCardClick}
+          style={{ cursor: isImageLoaded ? 'pointer' : 'auto' }}
         >
           <div style={{ display: isCardClicked ? 'initial' : 'none' }}>
             <Typography>
@@ -63,7 +70,6 @@ const Card = styled(MuiCard)`
     height: 346px;
     padding: 5px;
     text-align: center;
-    cursor: pointer;
     margin: 12px;
   }
 `
